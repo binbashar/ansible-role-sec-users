@@ -1,11 +1,14 @@
-# Ansible Role: binbash_inc.users
+# Ansible Role: binbashar.users
 
-Ansible user management role based on the offcial **users module** (https://docs.ansible.com/ansible/2.5/modules/user_module.html)
+Ansible user management role based on the official **users module** (https://docs.ansible.com/ansible/2.5/modules/user_module.html)
 
-### Requirements
+## Requirements
+
 None.
 
 ### Role Variables
+
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
 List of users to be created
 
@@ -25,6 +28,9 @@ Nested list where each item  it's composed by [`username_here`,`absolute_path_to
 users_nested_list_ssh_key_path_with_user: [['user1','/home/user1']]
 ```
 
+## Dependencies
+
+None.
 
 ### Example Playbook
 
@@ -45,3 +51,7 @@ With user creation and ssh key generation for **jenkins**
   users_list_deletion_var: []
   users_nested_list_ssh_key_path_with_user_var: [['jenkins','/var/lib/jenkins']]
 ```
+
+## License
+
+MIT / BSD
