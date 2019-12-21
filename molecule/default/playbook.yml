@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - role: binbashar.users
+      users_list_creation_var: ['username1', 'username4', 'username5']
+      users_delete_var: false
+      users_list_deletion_var: []
+      users_nested_list_ssh_key_path_with_user_var: [['jenkins', '/var/lib/jenkins']]
