@@ -1,44 +1,44 @@
 ---
-#======================================================================#
-# USERS to ADD w/ home dir                                             #
-#======================================================================#
+# ======================================================================#
+# USERS to ADD w/ home dir                                              #
+# ======================================================================#
 - user:
     name: "{{item}}"
     comment: "{{item}}"
-    createhome: yes
+    createhome: true
     home: /home/{{item}}
     shell: /bin/bash
     groups: sudo
-    generate_ssh_key: yes
+    generate_ssh_key: true
     state: present
   loop: "{{users_list_creation}}"
 
-#======================================================================#
-# USERS to REMOVE w/ home dir                                          #
-#======================================================================#
+# ======================================================================#
+# USERS to REMOVE w/ home dir                                           #
+# ======================================================================#
 - name: USERS to REMOVE w/ home dir
   user:
     name: "{{item}}"
     comment: "{{item}}"
-    createhome: yes
+    createhome: true
     home: /home/{{item}}
     groups: sudo
     state: absent
-    remove: yes
+    remove: true
   loop: "{{users_list_deletion}}"
   when:
     - users_delete == True
   tags: delete_user
 
-#======================================================================#
-# USERS CREATE ssh key pair                                            #
-#======================================================================#
+# ======================================================================#
+# USERS CREATE ssh key pair                                             #
+# ======================================================================#
 - name: Generate an OpenSSH rsa keypair with a different size 2048 bits
   block:
     # Ansible nested list reference code.
-    #nested_list: [[a,b],[c,d],[e,f],[g,h]]
-    #- debug: msg="{{ item[0] }} {{ item[1] }}"
-    #  with_list: "{{ nested_list }}"
+    # nested_list: [[a,b],[c,d],[e,f],[g,h]]
+    # - debug: msg="{{ item[0] }} {{ item[1] }}"
+    #   with_list: "{{ nested_list }}"
     - name: Create .ssh dir
       file:
         path: "{{ item[1] }}/.ssh"
@@ -57,7 +57,7 @@
     - debug: msg="{{ file_path_stat.results[0].stat }}"
 
     - name: create ssh key pair
-      command : "ssh-keygen -q -b 2048 -t rsa -f {{ item[1] }}/.ssh/id_rsa -C '' -N ''"
+      command: "ssh-keygen -q -b 2048 -t rsa -f {{ item[1] }}/.ssh/id_rsa -C '' -N ''"
       args:
         creates: "{{ item[1] }}/.ssh/id_rsa"
       with_list: "{{ users_nested_list_ssh_key_path_with_user }}"
@@ -68,13 +68,13 @@
   fetch:
     src: "{{ item[1] }}/.ssh/id_rsa.pub"
     dest: "roles/binbash_inc.users/files/id_rsa_{{ item[0] }}.pub"
-    flat: yes
+    flat: true
   with_list: "{{ users_nested_list_ssh_key_path_with_user }}"
   when: users_nested_list_ssh_key_flag == True
 
-#======================================================================#
-# USERS ADD ssh authorized key                                         #
-#======================================================================#
+# ======================================================================#
+# USERS ADD ssh authorized key                                          #
+# ======================================================================#
 - name: Set authorized key for "{{item}}"
   authorized_key:
     user: "{{item}}"
@@ -82,7 +82,7 @@
     key: "{{ lookup('file', 'files/id_rsa_{{ item }}.pub') }}"
   loop: "{{users_list_creation}}"
 
-#======================================================================#
-# USERS allow sudo without password input                              #
-#======================================================================#
+# ======================================================================#
+# USERS allow sudo without password input                               #
+# ======================================================================#
 - lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
