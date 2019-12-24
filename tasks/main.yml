@@ -2,7 +2,8 @@
 # ======================================================================#
 # USERS to ADD w/ home dir                                              #
 # ======================================================================#
-- user:
+- name: USERS to ADD w/ shell, group, ssh key and home dir
+  user:
     name: "{{item}}"
     comment: "{{item}}"
     createhome: true
@@ -67,7 +68,7 @@
 - name: Fetching previously generate SSH public key for jenkins users
   fetch:
     src: "{{ item[1] }}/.ssh/id_rsa.pub"
-    dest: "roles/binbash_inc.users/files/id_rsa_{{ item[0] }}.pub"
+    dest: "roles/binbash_inc.ansible_role_users/files/id_rsa_{{ item[0] }}.pub"
     flat: true
   with_list: "{{ users_nested_list_ssh_key_path_with_user }}"
   when: users_nested_list_ssh_key_flag == True
@@ -85,4 +86,5 @@
 # ======================================================================#
 # USERS allow sudo without password input                               #
 # ======================================================================#
-- lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
+- name: Allow sudo without password input"
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"

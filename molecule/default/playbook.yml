@@ -9,7 +9,7 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - role: binbashar.users
+    - role: binbash_inc.ansible_role_users
       users_list_creation_var: ['username1', 'username4', 'username5']
       users_delete_var: false
       users_list_deletion_var: []

@@ -1,4 +1,4 @@
-# Ansible Role: binbashar.users
+# Ansible Role: binbash_inc.ansible_role_users
 
 Ansible user management role based on the official **users module** (https://docs.ansible.com/ansible/2.5/modules/user_module.html)
 
@@ -36,7 +36,7 @@ None.
 
 With user creation, deletion and ssh key generation for **jenkins** user
 ```
-- role: binbash_inc.users
+- role: binbash_inc.ansible_role_users
   users_list_creation_var: ['username1','username4','username5']
   users_delete_var: True
   users_list_deletion_var: ['username2','username3']
@@ -45,7 +45,7 @@ With user creation, deletion and ssh key generation for **jenkins** user
 
 With user creation and ssh key generation for **jenkins**
 ```
-- role: binbash_inc.users
+- role: binbash_inc.ansible_role_users
   users_list_creation_var: ['username1','username4','username5']
   users_delete_var: False
   users_list_deletion_var: []
