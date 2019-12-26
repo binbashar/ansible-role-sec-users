@@ -20,7 +20,7 @@ List of users to be deleted (`users_delete` flag must be set to `True` in order 
 **NOTE:** Users must not be present in the `users_list_creation` var for functioning consistency.
 ```
 users_list_deletion: []
-users_delete: "False"
+users_delete: false
 ```
 
 Nested list where each item  it's composed by [`username_here`,`absolute_path_to_user_home_here`]
@@ -47,7 +47,7 @@ With user creation and ssh key generation for **jenkins**
 ```
 - role: binbash_inc.ansible_role_users
   users_list_creation_var: ['username1','username4','username5']
-  users_delete_var: False
+  users_delete_var: false
   users_list_deletion_var: []
   users_nested_list_ssh_key_path_with_user_var: [['jenkins','/var/lib/jenkins']]
 ```
