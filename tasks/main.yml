@@ -4,31 +4,31 @@
 # ======================================================================#
 - name: USERS to ADD w/ shell, group, ssh key and home dir
   user:
-    name: "{{item}}"
-    comment: "{{item}}"
+    name: "{{ item }}"
+    comment: "{{ item }}"
     createhome: true
-    home: /home/{{item}}
+    home: /home/{{ item }}
     shell: /bin/bash
     groups: sudo
     generate_ssh_key: true
     state: present
-  loop: "{{users_list_creation}}"
+  loop: "{{ users_list_creation }}"
 
 # ======================================================================#
 # USERS to REMOVE w/ home dir                                           #
 # ======================================================================#
 - name: USERS to REMOVE w/ home dir
   user:
-    name: "{{item}}"
-    comment: "{{item}}"
+    name: "{{ item }}"
+    comment: "{{ item }}"
     createhome: true
-    home: /home/{{item}}
+    home: /home/{{ item }}
     groups: sudo
     state: absent
     remove: true
-  loop: "{{users_list_deletion}}"
+  loop: "{{ users_list_deletion }}"
   when:
-    - users_delete == True
+    - users_delete
   tags: delete_user
 
 # ======================================================================#
@@ -62,8 +62,8 @@
       args:
         creates: "{{ item[1] }}/.ssh/id_rsa"
       with_list: "{{ users_nested_list_ssh_key_path_with_user }}"
-      when: file_path_stat.results[0].stat.exists == False
-  when: users_nested_list_ssh_key_flag == True
+      when: not file_path_stat.results[0].stat.exists
+  when: users_nested_list_ssh_key_flag
 
 - name: Fetching previously generate SSH public key for jenkins users
   fetch:
@@ -71,17 +71,17 @@
     dest: "roles/binbash_inc.ansible_role_users/files/id_rsa_{{ item[0] }}.pub"
     flat: true
   with_list: "{{ users_nested_list_ssh_key_path_with_user }}"
-  when: users_nested_list_ssh_key_flag == True
+  when: users_nested_list_ssh_key_flag
 
 # ======================================================================#
 # USERS ADD ssh authorized key                                          #
 # ======================================================================#
 - name: Set authorized key for "{{item}}"
   authorized_key:
-    user: "{{item}}"
+    user: "{{ item }}"
     state: present
     key: "{{ lookup('file', 'files/id_rsa_{{ item }}.pub') }}"
-  loop: "{{users_list_creation}}"
+  loop: "{{ users_list_creation }}"
 
 # ======================================================================#
 # USERS allow sudo without password input                               #
