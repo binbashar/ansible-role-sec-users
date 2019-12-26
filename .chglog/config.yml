@@ -1,0 +1,16 @@
+---
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/binbashar/ansible-role-users
+options:
+  header:
+    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Scope
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
