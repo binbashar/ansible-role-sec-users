@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: binbash_inc
-  description: User management for Linux.
+  description: User management for Linux - https://galaxy.ansible.com/binbash_inc/ansible_role_users
   company: "Binbashar Inc."
   license: "license (BSD, MIT)"
   min_ansible_version: 2.5

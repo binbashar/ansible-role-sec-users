@@ -76,7 +76,7 @@
 # ======================================================================#
 # USERS ADD ssh authorized key                                          #
 # ======================================================================#
-- name: Set authorized key for "{{item}}"
+- name: Set authorized key for "{{ item }}"
   authorized_key:
     user: "{{ item }}"
     state: present
