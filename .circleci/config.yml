@@ -20,13 +20,13 @@ jobs:
       - run: ls -ltra
       - run: git branch
 
-      - run:
-          name: tests-init
-          command: make init
+#      - run:
+#          name: tests-init
+#          command: make init
 
       - run:
           name: tests-ansible-molecule-lint-e2e
-          command: make test-molecule-local
+          command: make init && make test-molecule-local
 
   #
   # Release
