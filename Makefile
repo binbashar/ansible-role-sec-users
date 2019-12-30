@@ -30,9 +30,10 @@ init: ## Install required ansible roles
 	else\
 		echo "# CircleCI molecule dependencies setup";\
 		alias python='/usr/bin/python3';\
-		pip install --upgrade pip==${PY_PIP_VER};\
-		pip install -I ansible==${PY_ANSIBLE_VER};\
-		pip install -I molecule[docker]==${PY_MOLECULE_VER};\
+		alias python='/usr/local/bin/pip3';\
+		pip3 install --upgrade pip==${PY_PIP_VER};\
+		pip3 install -I ansible==${PY_ANSIBLE_VER};\
+		pip3 install -I molecule[docker]==${PY_MOLECULE_VER};\
 	fi;
 
 test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansible galaxy
