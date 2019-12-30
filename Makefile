@@ -29,14 +29,6 @@ init: ## Install required ansible roles
 		pip install --user -I molecule[docker]==${PY_MOLECULE_VER};\
 	else\
 		echo "# CircleCI molecule dependencies setup";\
-		sudo apt update;\
-		sudo add-apt-repository ppa:jonathonf/python-3.6 -y;\
-		sudo apt install python3.6;\
-		sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1;\
-		sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2;\
-		alias python='/usr/bin/python3.6';\
-		alias pip='/usr/local/bin/pip3';\
-		python --version;\
 		pip install --upgrade pip==${PY_PIP_VER};\
 		pip install -I ansible==${PY_ANSIBLE_VER};\
 		pip install -I molecule[docker]==${PY_MOLECULE_VER};\
