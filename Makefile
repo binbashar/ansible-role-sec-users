@@ -2,6 +2,8 @@
 SHELL := /bin/bash
 
 ANSIBLE_GALAXY_ROLE_NAME := binbash_inc.ansible_role_users
+PY_PIP_VER := 19.3.1
+PY_ANSIBLE_VER := 2.8.7
 PY_MOLECULE_VER := 2.22
 
 define OS_VER_LIST
@@ -20,7 +22,8 @@ help:
 # MOLECULE: ANSIBLE ROLE TESTS                                 #
 #==============================================================#
 init: ## Install required ansible roles
-	pip install --upgrade pip==19.3.1
+	pip install --upgrade pip==${PY_PIP_VER}
+	pip install --user -I ansible==${PY_ANSIBLE_VER}
 	pip install --user -I molecule[docker]==${PY_MOLECULE_VER}
 
 test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansible galaxy
@@ -46,6 +49,7 @@ test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansibl
 
 test-molecule-local: ## Run playbook tests w/ molecule using the local code
 	mkdir -p molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}
+	pwd
 	cd .. && rsync -Rr --exclude './ansible-role-users/molecule' ./ansible-role-users/ ./ansible-role-users/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/ \
 
 	OS_VER=(${OS_VER_LIST});\
