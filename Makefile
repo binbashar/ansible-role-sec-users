@@ -50,7 +50,7 @@ test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansibl
 test-molecule-local: ## Run playbook tests w/ molecule using the local code
 	mkdir -p molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}
 
-	if [[ "$$(cd ../ && ls |grep 'ansible-role-users')" =~ "ansible-role-users" ]]; then\
+	@if [[ "$$(cd ../ && ls |grep 'ansible-role-users')" =~ "ansible-role-users" ]]; then\
 		echo "# Local molecule role setup";\
 		cd .. && rsync -Rr --exclude 'ansible-role-users/molecule' ansible-role-users/ ansible-role-users/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/;\
 	else\
