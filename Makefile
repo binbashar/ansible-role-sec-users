@@ -30,8 +30,7 @@ init: ## Install required ansible roles
 	else\
 		echo "# CircleCI molecule dependencies setup";\
 		sudo apt update;\
-		sudo add-apt-repository ppa:deadsnakes/ppa -y;\
-		sudo apt install python3.7;\
+		sudo apt install python3;\
 		alias python='/usr/bin/python3';\
 		alias pip='/usr/local/bin/pip3';\
 		python --version;\
