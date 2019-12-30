@@ -29,7 +29,7 @@ init: ## Install required ansible roles
 		pip install --user -I molecule[docker]==${PY_MOLECULE_VER};\
 	else\
 		echo "# CircleCI molecule dependencies setup";\
-		alias python='/usr/bin/python3'
+		alias python='/usr/bin/python3';\
 		pip install --upgrade pip==${PY_PIP_VER};\
 		pip install -I ansible==${PY_ANSIBLE_VER};\
 		pip install -I molecule[docker]==${PY_MOLECULE_VER};\
