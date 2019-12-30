@@ -31,6 +31,7 @@ init: ## Install required ansible roles
 		echo "# CircleCI molecule dependencies setup";\
 		sudo apt update;\
 		sudo apt install python3;\
+		where python3;\
 		alias python='/usr/bin/python3';\
 		alias pip='/usr/local/bin/pip3';\
 		python --version;\
