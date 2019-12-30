@@ -3,6 +3,32 @@ version: 2.1
 
 jobs:
   #
+  # Tests Lint + E2E w/ molecule
+  #
+  test-static-code-linting-and-e2e:
+    machine:
+      image: ubuntu-1604:201903-01
+      # This job has been blocked because Docker Layer Caching is not available on your plan.
+      # Please upgrade to continue building.
+      # Note: you will need to push a new commit or call the API to rerun the pipeline.
+      docker_layer_caching: false
+
+    steps:
+      - checkout
+
+      - run: pwd
+      - run: ls -ltra
+      - run: git branch
+
+      - run:
+          name: tests-init
+          command: make init
+
+      - run:
+          name: tests-ansible-molecule-lint-e2e
+          command: make test-molecule-local
+
+  #
   # Release
   #
   release-patch-with-changelog:
@@ -42,6 +68,13 @@ workflows:
   version: 2
   changelog_and_release:
     jobs:
+      - test-static-code-linting-and-e2e:
+          context: binbashar-org-global-context
+          filters:
+            branches:
+              # only branches matching the below regex filters will run
+              ignore:
+                - master
       - release-patch-with-changelog:
           context: binbashar-org-global-context
           filters:
