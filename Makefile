@@ -49,7 +49,7 @@ test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansibl
 
 test-molecule-local: ## Run playbook tests w/ molecule using the local code
 	mkdir -p molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}
-	pwd
+	pwd && ls
 	cd .. && rsync -Rr --exclude './ansible-role-users/molecule' ./ansible-role-users/ ./ansible-role-users/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/ \
 
 	OS_VER=(${OS_VER_LIST});\
