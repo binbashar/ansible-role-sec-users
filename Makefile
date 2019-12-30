@@ -20,6 +20,7 @@ help:
 # MOLECULE: ANSIBLE ROLE TESTS                                 #
 #==============================================================#
 init: ## Install required ansible roles
+	pip install --upgrade pip==19.3.1
 	pip install --user -I molecule[docker]==${PY_MOLECULE_VER}
 
 test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansible galaxy
