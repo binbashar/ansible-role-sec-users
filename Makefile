@@ -22,9 +22,17 @@ help:
 # MOLECULE: ANSIBLE ROLE TESTS                                 #
 #==============================================================#
 init: ## Install required ansible roles
-	pip install --upgrade pip==${PY_PIP_VER}
-	pip install --user -I ansible==${PY_ANSIBLE_VER}
-	pip install --user -I molecule[docker]==${PY_MOLECULE_VER}
+	@if [[ "$$(cd ../ && ls |grep 'ansible-role-users')" =~ "ansible-role-users" ]]; then\
+		echo "# Local molecule dependencies setup";\
+		pip install --upgrade pip==${PY_PIP_VER};\
+		pip install --user -I ansible==${PY_ANSIBLE_VER};\
+		pip install --user -I molecule[docker]==${PY_MOLECULE_VER};\
+	else\
+		echo "# CircleCI molecule dependencies setup";\
+		pip install --upgrade pip==${PY_PIP_VER};\
+		pip install -I ansible==${PY_ANSIBLE_VER};\
+		pip install -I molecule[docker]==${PY_MOLECULE_VER};\
+	fi;
 
 test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansible galaxy
 	mkdir -p molecule/default/roles
