@@ -62,6 +62,10 @@ jobs:
             fi
 
       - run:
+          name: tests-init
+          command: make init
+      
+      - run:
           name: ansible-galaxy-import-role
           command: >-
             ansible-galaxy role import
