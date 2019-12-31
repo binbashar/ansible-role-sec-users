@@ -2,6 +2,8 @@
 SHELL := /bin/bash
 
 ANSIBLE_GALAXY_ROLE_NAME := binbash_inc.ansible_role_users
+ANSIBLE_REPO_ROLE_NAME := ansible-role-users
+
 PY_PIP_VER := 19.3.1
 PY_ANSIBLE_VER := 2.8.7
 PY_MOLECULE_VER := 2.22
@@ -22,7 +24,7 @@ help:
 # MOLECULE: ANSIBLE ROLE TESTS                                 #
 #==============================================================#
 init: ## Install required ansible roles
-	@if [[ "$$(cd ../ && ls |grep 'ansible-role-users')" =~ "ansible-role-users" ]]; then\
+	@if [[ "$$(cd ../ && ls |grep '${ANSIBLE_REPO_ROLE_NAME}')" =~ "${ANSIBLE_REPO_ROLE_NAME}" ]]; then\
 		echo "# Local molecule dependencies setup";\
 		pip install --upgrade pip==${PY_PIP_VER};\
 		pip install --user -I ansible==${PY_ANSIBLE_VER};\
@@ -58,12 +60,12 @@ test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansibl
 test-molecule-local: ## Run playbook tests w/ molecule using the local code
 	mkdir -p molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}
 
-	@if [[ "$$(cd ../ && ls |grep 'ansible-role-users')" =~ "ansible-role-users" ]]; then\
+	@if [[ "$$(cd ../ && ls |grep '${ANSIBLE_REPO_ROLE_NAME}')" =~ "${ANSIBLE_REPO_ROLE_NAME}" ]]; then\
 		echo "# Local molecule role setup";\
-		cd .. && rsync -Rr --exclude 'ansible-role-users/molecule' ansible-role-users/ ansible-role-users/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/;\
+		cd .. && rsync -Rr --exclude '${ANSIBLE_REPO_ROLE_NAME}/molecule' ${ANSIBLE_REPO_ROLE_NAME}/ ${ANSIBLE_REPO_ROLE_NAME}/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/;\
 	else\
 		echo "# CircleCI molecule role setup";\
-		cd .. rsync -Rr --exclude 'project/molecule' project/ ansible-role-users/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/;\
+		cd .. rsync -Rr --exclude 'project/molecule' project/ ${ANSIBLE_REPO_ROLE_NAME}/molecule/default/roles/${ANSIBLE_GALAXY_ROLE_NAME}/;\
 	fi;
 
 	OS_VER=(${OS_VER_LIST});\
@@ -83,6 +85,11 @@ test-molecule-local: ## Run playbook tests w/ molecule using the local code
         echo "DONE";\
         echo "";\
 	done;
+
+ansible-galaxy-import-role: ## Run playbook tests w/ molecule using the local code
+	ansible-galaxy role import --branch="master" --api-key="$(ANSIBLE_GALAXY_API_KEY)" \
+	--role-name="binbash_inc.ansible_role_users" \
+	binbashar ${ANSIBLE_REPO_ROLE_NAME}
 
 #==============================================================#
 # CIRCLECI 													   #
