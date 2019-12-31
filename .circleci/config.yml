@@ -61,6 +61,15 @@ jobs:
               echo "==============================================================================================="
             fi
 
+      - run:
+          name: ansible-galaxy-import-role
+          command: >-
+            ansible-galaxy role import
+            --branch="master"
+            --api-key="$ANSIBLE_GALAXY_API_KEY"
+            --role-name="binbash_inc.ansible_role_users"
+            binbashar ansible-role-users
+
 #
 # Jobs workflow
 #
