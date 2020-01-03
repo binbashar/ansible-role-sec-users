@@ -36,6 +36,9 @@ init: ## Install required ansible roles
 		pip install -I molecule[docker]==${PY_MOLECULE_VER};\
 	fi;
 
+test-ansible-lint: ## Ansible lint
+	ansible-lint
+
 test-molecule-galaxy: ## Run playbook tests w/ molecule pulling role from ansible galaxy
 	mkdir -p molecule/default/roles
 	ansible-galaxy install ${ANSIBLE_GALAXY_ROLE_NAME} -p molecule/default/roles -f
