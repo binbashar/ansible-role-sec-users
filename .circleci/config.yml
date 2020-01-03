@@ -74,7 +74,7 @@ jobs:
 #
 workflows:
   version: 2
-  changelog_and_release:
+  test_and_release:
     jobs:
       - test-static-code-linting-and-e2e:
           context: binbashar-org-global-context
