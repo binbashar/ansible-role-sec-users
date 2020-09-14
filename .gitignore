@@ -8,15 +8,19 @@
 !*.circleci
 !*.dockeringnore
 !*.hosts
-!/.gitignore
+!.hosts.example
+!*.gitignore
 !/.chglog
 !/.gitallowed
+!/.github
 !*.gitkeep
+!*.editorconfig
 
 # SSH keys #
 ############
 id_rsa
 id_dsa
+keys/
 
 # OS generated files #
 ######################
@@ -77,6 +81,8 @@ Thumbs.db
 *.pgpass
 *.vagrant
 
-# Project files #
-####################
+# Project specific files #
+#################################
 molecule/default/roles
+/@bin
+

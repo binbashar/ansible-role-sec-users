@@ -1,5 +1,7 @@
 .PHONY: help
-SHELL := /bin/bash
+SHELL         := /bin/bash
+MAKEFILE_PATH := ./Makefile
+MAKEFILES_DIR := ./@bin/makefiles
 
 ANSIBLE_GALAXY_ROLE_NAME := binbash_inc.ansible_role_users
 ANSIBLE_REPO_ROLE_NAME := ansible-role-users
@@ -19,6 +21,23 @@ endef
 help:
 	@echo 'Available Commands:'
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf " - \033[36m%-18s\033[0m %s\n", $$1, $$2}'
+
+#==============================================================#
+# INITIALIZATION                                               #
+#==============================================================#
+init-makefiles: ## initialize makefiles
+	rm -rf ${MAKEFILES_DIR}
+	mkdir -p ${MAKEFILES_DIR}
+	git clone https://github.com/binbashar/le-dev-makefiles.git ${MAKEFILES_DIR}
+	echo "" >> ${MAKEFILE_PATH}
+	sed -i '/^#include.*/s/^#//' ${MAKEFILE_PATH}
+
+#
+## IMPORTANT: Automatically managed
+## Must NOT UNCOMMENT the #include lines below
+#
+#include ${MAKEFILES_DIR}/circleci/circleci.mk
+#include ${MAKEFILES_DIR}/release-mgmt/release.mk
 
 #==============================================================#
 # MOLECULE: ANSIBLE ROLE TESTS                                 #
@@ -94,8 +113,4 @@ ansible-galaxy-import-role: ## Run playbook tests w/ molecule using the local co
 	--role-name="binbash_inc.ansible_role_users" \
 	binbashar ${ANSIBLE_REPO_ROLE_NAME}
 
-#==============================================================#
-# CIRCLECI 													   #
-#==============================================================#
-circleci-validate-config: ## Validate A CircleCI Config (https://circleci.com/docs/2.0/local-cli/)
-	circleci config validate .circleci/config.yml
+
