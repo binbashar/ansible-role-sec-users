@@ -42,12 +42,18 @@ jobs:
     steps:
       - checkout
 
-      - run: pwd
-      - run: ls -ltra
-      - run: git branch
+      - run:
+          name: Context Info Cmds
+          command: pwd && ls -ltra && git branch
 
       - run:
-          name: release-$VERSION_NUMBER-with-changelog-circleci
+          name: Initialize Repo Makefiles
+          command: |
+            make init-makefiles
+            git update-index --assume-unchanged "Makefile"
+
+      - run:
+          name: Release New Version
           command: |
             if git status | grep 'nothing to commit, working tree clean'; then
               echo "==============================================================================================="
@@ -55,7 +61,7 @@ jobs:
               echo "==============================================================================================="
               git config --global user.email "$GIT_USER_EMAIL"
               git config --global user.name "$GIT_USER_NAME"
-              make -f Makefile.release release-$VERSION_NUMBER-with-changelog-circleci
+              make release-$VERSION_NUMBER-with-changelog-circleci
             else
               echo "==============================================================================================="
               echo "Changes in working directory pending to be pushed - please check 'git status' cmd output below "
@@ -88,8 +94,9 @@ workflows:
                 - master
       - release-version-with-changelog:
           context: binbashar-org-global-context
+          requires:
+            - test-static-code-linting-and-e2e
           filters:
             branches:
-              # only branches matching the below regex filters will run
-              only:
-                - master
+             only: # only branches matching the below regex filters will run
+               - master

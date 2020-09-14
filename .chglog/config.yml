@@ -1,4 +1,3 @@
----
 style: github
 template: CHANGELOG.tpl.md
 info:
@@ -6,10 +5,8 @@ info:
   repository_url: https://github.com/binbashar/ansible-role-users
 options:
   header:
-    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern: "^(.*)$"
     pattern_maps:
-      - Type
-      - Scope
       - Subject
   notes:
     keywords:
