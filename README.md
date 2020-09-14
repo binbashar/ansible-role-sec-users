@@ -1,3 +1,12 @@
+<div align="center">
+    <img src="./%40doc/figures/binbash-logo.png" 
+    alt="binbash" width="250"/>
+</div>
+<div align="right">
+  <img src="./%40doc/figures/binbash-leverage-ansible-logo.png"
+  alt="leverage" width="130"/>
+</div>
+
 # Ansible Role: binbash_inc.ansible_role_users
 
 Ansible user management role based on the official **users module** (https://docs.ansible.com/ansible/2.5/modules/user_module.html)
@@ -55,3 +64,14 @@ With user creation and ssh key generation for **jenkins**
 ## License
 
 MIT / BSD
+
+# Release Management
+### CircleCi PR auto-release job
+
+<div align="left">
+  <img src="./%40doc/figures/circleci-logo.png" alt="circleci" width="130"/>
+</div>
+
+- [**pipeline-job**](https://app.circleci.com/pipelines/github/binbashar/ansible-role-users) (**NOTE:** Will only run after merged PR)
+- [**releases**](https://github.com/binbashar/ansible-role-users/releases) 
+- [**changelog**](https://github.com/binbashar/ansible-role-users/blob/master/CHANGELOG.md) 
