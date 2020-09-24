@@ -7,7 +7,7 @@ jobs:
   #
   test-static-code-linting-and-e2e:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-1604:202007-01
       # This job has been blocked because Docker Layer Caching is not available on your plan.
       # Please upgrade to continue building.
       # Note: you will need to push a new commit or call the API to rerun the pipeline.
@@ -16,9 +16,15 @@ jobs:
     steps:
       - checkout
 
-      - run: pwd
-      - run: ls -ltra
-      - run: git branch
+      - run:
+          name: Context Info Cmds
+          command: pwd && ls -ltra && git branch
+
+      - run:
+          name: Initialize Repo Makefiles
+          command: |
+            make init-makefiles
+            git update-index --assume-unchanged "Makefile"
 
       - run:
           name: tests-init
@@ -33,7 +39,7 @@ jobs:
   #
   release-version-with-changelog:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-1604:202007-01
       docker_layer_caching: false
 
     environment:
