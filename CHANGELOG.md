@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v0.0.14"></a>
+## [v0.0.14] - 2020-09-24
+
+- Merge branch 'master' of github.com:binbashar/ansible-role-users
+- BBL-381 | updating min_ansible_version: 2.9
+
+
 <a name="v0.0.13"></a>
 ## [v0.0.13] - 2020-09-24
 
@@ -115,7 +122,8 @@ All notable changes to this project will be documented in this file.
 - initial commit
 
 
-[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.13...HEAD
+[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.14...HEAD
+[v0.0.14]: https://github.com/binbashar/ansible-role-users/compare/v0.0.13...v0.0.14
 [v0.0.13]: https://github.com/binbashar/ansible-role-users/compare/v0.0.12...v0.0.13
 [v0.0.12]: https://github.com/binbashar/ansible-role-users/compare/v0.0.11...v0.0.12
 [v0.0.11]: https://github.com/binbashar/ansible-role-users/compare/v0.0.10...v0.0.11
