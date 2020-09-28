@@ -4,3 +4,10 @@ rules:
   line-length:
     max: 200
     level: warning
+
+ignore: |
+  .chglog/
+  .circleci/
+  .github/
+  @bin/makefiles/
+  molecule/default/roles/
