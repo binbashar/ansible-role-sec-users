@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v0.0.15"></a>
+## [v0.0.15] - 2020-09-29
+
+- BBL-381 | moving unnesessary line in makefile
+- BBL-381 | updating molecule tests
+
+
 <a name="v0.0.14"></a>
 ## [v0.0.14] - 2020-09-24
 
@@ -122,7 +129,8 @@ All notable changes to this project will be documented in this file.
 - initial commit
 
 
-[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.14...HEAD
+[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.15...HEAD
+[v0.0.15]: https://github.com/binbashar/ansible-role-users/compare/v0.0.14...v0.0.15
 [v0.0.14]: https://github.com/binbashar/ansible-role-users/compare/v0.0.13...v0.0.14
 [v0.0.13]: https://github.com/binbashar/ansible-role-users/compare/v0.0.12...v0.0.13
 [v0.0.12]: https://github.com/binbashar/ansible-role-users/compare/v0.0.11...v0.0.12
