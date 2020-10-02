@@ -85,6 +85,13 @@ jobs:
           command: make ANSIBLE_GALAXY_API_KEY=$ANSIBLE_GALAXY_API_KEY ansible-galaxy-import-role
 
 #
+# CircleCI orbs are open-source, shareable packages of parameterizable reusable
+# configuration elements, including jobs, commands, and executors.
+#
+orbs:
+  sumologic: circleci/sumologic@1.0.6
+
+#
 # Jobs workflow
 #
 workflows:
@@ -104,3 +111,7 @@ workflows:
             branches:
              only: # only branches matching the below regex filters will run
                - master
+      - sumologic/workflow-collector:
+          context: binbashar-org-global-context
+          requires:
+            - release-version-with-changelog
