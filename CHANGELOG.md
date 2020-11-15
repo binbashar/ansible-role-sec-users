@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v0.0.17"></a>
+## [v0.0.17] - 2020-11-15
+
+- BBL-440 | improving Makefile init-makefiles w/ fixed version
+
+
 <a name="v0.0.16"></a>
 ## [v0.0.16] - 2020-10-02
 
@@ -135,7 +141,8 @@ All notable changes to this project will be documented in this file.
 - initial commit
 
 
-[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.16...HEAD
+[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.17...HEAD
+[v0.0.17]: https://github.com/binbashar/ansible-role-users/compare/v0.0.16...v0.0.17
 [v0.0.16]: https://github.com/binbashar/ansible-role-users/compare/v0.0.15...v0.0.16
 [v0.0.15]: https://github.com/binbashar/ansible-role-users/compare/v0.0.14...v0.0.15
 [v0.0.14]: https://github.com/binbashar/ansible-role-users/compare/v0.0.13...v0.0.14
