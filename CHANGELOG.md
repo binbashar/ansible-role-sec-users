@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v0.0.18"></a>
+## [v0.0.18] - 2020-11-16
+
+- BBL-444 | slack notif + makefiles-lib pointed to latest ver
+
+
 <a name="v0.0.17"></a>
 ## [v0.0.17] - 2020-11-15
 
@@ -141,7 +147,8 @@ All notable changes to this project will be documented in this file.
 - initial commit
 
 
-[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.17...HEAD
+[Unreleased]: https://github.com/binbashar/ansible-role-users/compare/v0.0.18...HEAD
+[v0.0.18]: https://github.com/binbashar/ansible-role-users/compare/v0.0.17...v0.0.18
 [v0.0.17]: https://github.com/binbashar/ansible-role-users/compare/v0.0.16...v0.0.17
 [v0.0.16]: https://github.com/binbashar/ansible-role-users/compare/v0.0.15...v0.0.16
 [v0.0.15]: https://github.com/binbashar/ansible-role-users/compare/v0.0.14...v0.0.15
