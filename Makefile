@@ -2,7 +2,7 @@
 SHELL         := /bin/bash
 MAKEFILE_PATH := ./Makefile
 MAKEFILES_DIR := ./@bin/makefiles
-MAKEFILES_VER := v0.1.1
+MAKEFILES_VER := v0.1.6
 
 ANSIBLE_GALAXY_ROLE_NAME := binbash_inc.ansible_role_users
 ANSIBLE_REPO_ROLE_NAME   := ansible-role-users
